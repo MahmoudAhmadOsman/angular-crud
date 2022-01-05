@@ -1,0 +1,59 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-info">Users List</h1>
+      <hr />
+      <button class="btn btn-primary my-3" [routerLink]="['/add-user']">
+        Add
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div *ngIf="peopleList.length == 0" class="alert alert-warning">
+        The list is empty
+      </div>
+      <table *ngIf="peopleList.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of peopleList; let i = index">
+            <th>{{ i + 1 }}</th>
+            <td>{{ person.firstname }}</td>
+            <td>{{ person.lastname }}</td>
+            <td>{{ person.phone }}</td>
+            <td>
+              <button class="btn btn-info" title="Details">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </button>
+              <button
+                class="btn btn-danger mx-3"
+                (click)="delete(person)"
+                title="Delete"
+                onclick="confirm('Are you sure?')"
+              >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-warning"
+                [routerLink]="['/update-user', person._id]"
+                title="Update"
+              >
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

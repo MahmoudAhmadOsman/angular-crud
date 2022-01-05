@@ -1,0 +1,52 @@
+<div class="container mt-3">
+  <h1 class="text-info">Login</h1>
+  <hr />
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control form-control-lg"
+            id="exampleInputEmail1"
+            formControlName="email"
+            aria-describedby="emailHelp"
+          />
+          <div *ngIf="email.touched && email.invalid">
+            <small *ngIf="email.errors.required" class="text-danger"
+              >Email is required<br
+            /></small>
+            <small *ngIf="email.errors.email" class="text-danger"
+              >Invalid Email<br
+            /></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control form-control-lg"
+            id="exampleInputPassword1"
+            formControlName="password"
+          />
+          <div *ngIf="password.touched && password.invalid">
+            <small *ngIf="password.errors.required" class="text-danger"
+              >Password is required<br
+            /></small>
+            <small *ngIf="password.errors.minlength" class="text-danger"
+              >Password must contain at least 6 characters
+            </small>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg text-uppercase"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
